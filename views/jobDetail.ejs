@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Detail</title>
+</head>
+<body>
+            <h1><%= job.jobtitle %></h1>
+            <br>
+            <p><%= job.jobdescription %></p>
+            <br>
+            <p><%= job.location %></p>
+            <% if(user.username!==job.user) { %>
+            <form action="/applyjob/<%= job.id %>/company/<%= job.user %>/" method="post">
+                <button type="submit">Apply</button>
+            </form>
+            <% } %>
+</body>
+</html>

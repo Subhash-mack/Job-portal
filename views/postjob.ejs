@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job</title>
+</head>
+<body>
+    <h1>Post Job</h1>
+    <form action="postjob" method="POST"> 
+        <div class="rendered-form">
+            <div class="formbuilder-text form-group field-jobname">
+                <label for="jobname" class="formbuilder-text-label">Job name<span class="formbuilder-required">*</span></label>
+                <input type="text" placeholder="Enter Job name" class="form-control" name="jobname" access="false" maxlength="20" id="jobname" required="required" aria-required="true">
+            </div>
+            <div class="formbuilder-text form-group field-text-1633415387220">
+                <label for="text-1633415387220" class="formbuilder-text-label">Job description<span class="formbuilder-required">*</span></label>
+                <input type="text" placeholder="Jd" class="form-control" name="jobdescription" access="false" maxlength="200" id="text-1633415387220" required="required" aria-required="true">
+            </div>
+            <div class="formbuilder-text form-group field-text-1633415395403">
+                <label for="text-1633415395403" class="formbuilder-text-label">Location<span class="formbuilder-required">*</span></label>
+                <input type="text" placeholder="Location" class="form-control" name="location" access="false" maxlength="20" id="text-1633415395403" required="required" aria-required="true">
+            </div>
+            <div class="formbuilder-button form-group field-submit">
+                <button type="submit" class="btn-primary btn" name="submit" access="false" id="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <table>
+            <thead>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Apply</th>
+            </thead>
+        <tbody>
+        <% jobs.forEach(job => { %>
+            <tr>
+                <td><%= job.jobtitle %></td>
+                <td><%= job.jobdescription %></td>
+                <td><%= job.location %></td>
+                <td><% job.appliedBy.forEach(candidate => { %>
+                    <p><%= candidate.username %></p>
+                    <p><%= candidate.email %></p>
+                    <p><%= candidate.phone %></p>
+                    <p><%= candidate.location %></p>
+                    <% }); %></td>
+                <td><a href="/jobDetails/<%= job._id %>">Click for job details<details></details></a></td>
+            </tr>
+        <% }); %> 
+    </tbody>
+    </table>
+    </div>
+    <div id="logout"><a href="/logout">LOGOUT</a></div>
+</body>
+</html>
